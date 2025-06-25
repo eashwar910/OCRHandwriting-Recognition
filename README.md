@@ -1,10 +1,10 @@
 
 # OCR Based Handwriting Recognition System
 
-> ⚠️ **Before you clone the repo**, please download all necessary files from the following Dropbox link and add them to your working directory.
+> **Before you clone the repo**, please download all necessary files from the following Dropbox link and add them to your working directory.
 > This way, you can directly run `paint.py` and test the model without needing to train it from scratch.
 >
-> 📥 **[Download the files here](#https://www.dropbox.com/scl/fo/pjx7a5ui72si8n8l3l4lz/AMuaRHfzwYd2hftoOmX_SLk?rlkey=cdh3lmaap3b2j59vchjcfxzi4&st=6yu7ex8f&dl=0)**
+>  **[Download Link](https://www.dropbox.com/scl/fo/pjx7a5ui72si8n8l3l4lz/AMuaRHfzwYd2hftoOmX_SLk?rlkey=cdh3lmaap3b2j59vchjcfxzi4&st=6yu7ex8f&dl=0)**
 
 ---
 

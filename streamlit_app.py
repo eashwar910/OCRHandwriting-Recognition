@@ -22,6 +22,7 @@ except Exception:
 
 REPO_ROOT = Path(__file__).resolve().parent
 MODEL_FILENAME = "best_model.keras"
+HF_MODEL_REPO = "eashwarsiddha/ocr-handwriting"
 
 # ---------------------------------------------------------------------------
 # Core logic from paint.py — unchanged
@@ -88,22 +89,20 @@ def _resolve_model_path():
     if local.exists() and local.stat().st_size > 1_000_000:
         return str(local)
 
-    hf_repo = ""
+    hf_repo = HF_MODEL_REPO
     try:
-        hf_repo = st.secrets.get("HF_MODEL_REPO", "")
+        hf_repo = st.secrets.get("HF_MODEL_REPO", HF_MODEL_REPO)
     except Exception:
         pass
-    if hf_repo:
+    try:
         from huggingface_hub import hf_hub_download
         return hf_hub_download(repo_id=hf_repo, filename=MODEL_FILENAME)
-
-    st.error(
-        f"`{MODEL_FILENAME}` was not found (or is an unresolved Git LFS pointer). "
-        "Either commit the real weights file to the repo, or upload it to a "
-        "Hugging Face Hub repo and set `HF_MODEL_REPO = \"<user>/<repo>\"` in "
-        "the app's Streamlit secrets."
-    )
-    st.stop()
+    except Exception as e:
+        st.error(
+            f"`{MODEL_FILENAME}` was not found locally, and downloading it from "
+            f"Hugging Face Hub repo `{hf_repo}` failed: {e}"
+        )
+        st.stop()
 
 @st.cache_resource(show_spinner="Loading OCR model…")
 def load_ocr_model():

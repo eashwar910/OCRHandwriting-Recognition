@@ -1,0 +1,6 @@
+streamlit>=1.33,<2
+streamlit-drawable-canvas==0.9.3
+tensorflow>=2.19,<2.21
+opencv-python-headless>=4.8
+numpy
+huggingface_hub
